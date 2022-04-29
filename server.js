@@ -14,17 +14,40 @@ app.use('application/javascript', express.static(__dirname + '/public/index.js')
 
 var port = 28828
 
+var tables = ["Users", "Posts", "Comments", "Games", "Developers", "Friendships", "GameOwnerships"]
+
 app.get('/', (req, res, next) => {
-    var Context = {'tables' : [
-      {"table": "Users"},
-      {"table": "Posts"},
-      {"table": "Comments"},
-      {"table": "Games"},
-      {"table": "Developers"},
-      {"table": "Friendships"},
-      {"table": "GameOwnerships"},
-    ]}
+    var Context = {"tables":[]};
+    for (i = 0; i < tables.length; i++)
+    {
+      Context.tables.push({"table": tables[i]})
+    }
     res.status(200).render('index', Context)
+})
+
+app.get('/table/:tableName', (req, res, next) =>{
+  var Context = {"tables":[]};
+  for (i = 0; i < tables.length; i++)
+  {
+    Context.tables.push({"table": tables[i]})
+  }
+  if (tables.includes(req.params.tableName))
+  {
+    res.status(200).render(req.params.tableName, Context)
+  } 
+  else
+  {
+    res.status(400).render('404', Context)
+  }
+})
+
+app.get('*', (req, res, next) =>{
+  var Context = {"tables":[]};
+  for (i = 0; i < tables.length; i++)
+  {
+    Context.tables.push({"table": tables[i]})
+  }
+  res.status(400).render('404', Context)
 })
 
 app.listen(port, function (err) {
