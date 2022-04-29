@@ -1,8 +1,11 @@
+const util = require('util')
+require('util.promisify').shim();
 var path = require('path')
 var express = require('express')
 var exphbs = require('express-handlebars')
 const fs = require('fs')
 var app = express()
+const readFileAsync = util.promisify(fs.readFile);
 
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -12,7 +15,7 @@ app.use(express.static('public'));
 app.use('text/css', express.static(__dirname + '/public/style.css'))
 app.use('application/javascript', express.static(__dirname + '/public/index.js'))
 
-var port = 28828
+var port = process.argv[2]
 
 var tables = ["Users", "Posts", "Comments", "Games", "Developers", "Friendships", "GameOwnerships"]
 
