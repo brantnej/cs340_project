@@ -30,6 +30,16 @@ button{
     text-transform: uppercase;
 }
 
+.output{
+    position: inherit;
+    margin: 5px;
+    margin-left: 5px;
+}
+
+article > p {
+    font-weight: bold;
+}
+ 
 a:focus {
     outline: none;
 }
