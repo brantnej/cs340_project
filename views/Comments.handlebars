@@ -1,6 +1,6 @@
 <main>
     <article>
-    <p>
+        <p>Create Comment</p>
         <ul>
             <li>
                 <label for="create-userID">User ID:</label>
@@ -22,10 +22,9 @@
                 <button>Create Comment</button>
             </li>
         </ul>
-    </p>
     </article>
     <article>
-    <p>
+    <p>Delete Comment</p>
         <ul>
             <li>
                 <label for="delete-userID">User ID:</label>
@@ -47,11 +46,15 @@
                 <button>Delete Comment</button>
             </li>
         </ul>
-    </p>
     </article>
+
     <article>
-    <p>
+    <p>Retrieve Comment</p>
         <ul>
+            <li>
+                <label for="select-commentId">Comment ID:</label>
+                <input type = "number" name ="select-commentId">
+            </li>
             <li>
                 <label for="select-userID">User ID:</label>
                 <input type = "number" name ="select-userID">
@@ -72,13 +75,31 @@
                 <button>Select Comment</button>
             </li>
         </ul>
-                <label for "output">Output</label>
-        <textarea class="output" name="output"></textarea>
-    </p>
+         <table class="output">
+            <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
+            <tr>
+                <th>Comment ID</th>
+                <th>User ID</th>
+                <th>Post ID</th>
+                <th>Timestamp</th>
+                <th>Content</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </table> 
     </article>
     <article>
-    <p>
+    <p>Update Comment</p>
         <ul>
+            <li>
+                <label for="update-commentId">Comment ID:</label>
+                <input type = "number" name ="update-commentId">
+            </li>
             <li>
                 <label for="update-old-userID">Old User ID:</label>
                 <input type = "number" name ="update-old-userID">
@@ -107,6 +128,5 @@
                 <button>Update Comment</button>
             </li>
         </ul>
-    </p>
     </article>
 </main>

@@ -11,6 +11,11 @@
     </head>
     <body>
         {{> header}}
+        <article class="description">
+            Leaving a box blank means that the CRUD function will not care about it when it generates the WHILE section of the query. For example, pressing select without typing in ID will select all
+            items in the relation. If something is typed into a box, it will select only where the row matches the value of that box for its column. If two boxes are used, then the row must match both.
+            This means that Delete with empty controls will delete the entire relation, so be careful.
+        </article>
         {{{body}}}
     </body>
 

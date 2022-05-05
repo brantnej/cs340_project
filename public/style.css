@@ -18,6 +18,24 @@ a {
     color: darkblue;
 }
 
+.description {
+    font-weight: bold;
+}
+
+table {
+    width: 50%;
+}
+  
+caption{
+    font-weight: bold;
+}
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
 button:hover {
     box-shadow: 4px 4px lightblue;
 	cursor: pointer;   
@@ -77,6 +95,7 @@ article {
     flex-wrap: wrap;
     border: 4px solid black;
     box-shadow: -4px 4px grey;
+    padding: 10px;
 }
 
 img {

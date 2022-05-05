@@ -1,6 +1,6 @@
 <main>
     <article>
-    <p>
+    <p>Create Developer</p>
         <ul>
             <li>
                 <label for="create-developer-name">Developer Name:</label>
@@ -10,11 +10,14 @@
                 <button>Create Developer</button>
             </li>
         </ul>
-    </p>
     </article>
     <article>
-    <p>
+    <p>Delete Developer</p>
         <ul>
+            <li>
+                <label for="delete-developer-id">Developer ID:</label>
+                <input type = "number" name ="delete-developer-id">
+            </li>
             <li>
                 <label for="delete-developer-name">Developer Name:</label>
                 <input type = "text" name ="delete-developer-name">
@@ -23,11 +26,14 @@
                 <button>Delete Developer</button>
             </li>
         </ul>
-    </p>
     </article>
     <article>
-    <p>
+    <p>Retrieve Developer</p>
         <ul>
+            <li>
+                <label for="select-developer-id">Developer ID:</label>
+                <input type = "number" name ="select-developer-id">
+            </li>
             <li>
                 <label for="select-developer-name">Developer Name:</label>
                 <input type = "text" name ="select-developer-name">
@@ -36,13 +42,27 @@
                 <button>Select Developer</button>
             </li>
         </ul>
-                <label for "output">Output</label>
-        <textarea class="output" name="output"></textarea>
-    </p>
+        
+        <table class="output">
+            <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
+            <tr>
+                <th>Developer ID</th>
+                <th>Developer Name</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+        </table> 
+                
     </article>
     <article>
-    <p>
+    <p>Update Developer</p>
         <ul>
+            <li>
+                <label for="update-developer-id">Developer ID:</label>
+                <input type = "number" name ="update-developer-id">
+            </li>
             <li>
                 <label for="update-old-developer-name">Old Developer Name:</label>
                 <input type = "text" name ="update-old-developer-name">
@@ -53,6 +73,5 @@
                 <button>Update Developer</button>
             </li>
         </ul>
-    </p>
     </article>
 </main>
