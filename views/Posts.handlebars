@@ -3,7 +3,11 @@
         <p>Create Post</p>
         <ul>
             <li><label for "create-userid">User ID: </label>
-        <input type="number" name="create-username"></li>
+        <select name="create-userid">
+        {{#each users}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
 
             <li><label for "create-timestamp">Timestamp: </label>
         <input type="time" name="create-timestamp"></li>
@@ -18,11 +22,12 @@
     <article>
         <p>Retrieve Post</p>
         <ul>
-            <li><label for "retrieve-postid">Post ID: </label>
-        <input type="number" name="retrieve-username"></li>
-
             <li><label for "retrieve-userid">User ID: </label>
-        <input type="number" name="retrieve-username"></li>
+        <select name="retrieve-userid">
+        {{#each users}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
 
             <li><label for "retrieve-timestamp">Timestamp: </label>
         <input type="time" name="retrieve-timestamp"></li>
@@ -51,41 +56,14 @@
     </article>
 
     <article>
-        <p>Update Post</p>
-        <ul>
-            <li><label for "update-postid">Post ID: </label>
-        <input type="number" name="update-username"></li>
-
-        <li><label for "update-old-userid">Old User ID: </label>
-        <input type="number" name="update-old-username"></li>
-
-            <li><label for "update-old-timestamp">Old Timestamp: </label>
-        <input type="time" name="update-old-timestamp"></li>
-
-            <li><label for "update-old-content">Old Content: </label>
-        <input type="text" name="update-old-content"></li>
-
-        <li><label for "update-new-userid">New User ID: </label>
-        <input type="number" name="update-new-username"></li>
-
-            <li><label for "update-new-timestamp">New Timestamp: </label>
-        <input type="time" name="update-new-timestamp"></li>
-
-            <li><label for "update-new-content">New Content: </label>
-        <input type="text" name="update-new-content"></li>
-
-        <li><button>Update Posts</button></li>
-        </ul>
-    </article>
-
-    <article>
         <p>Delete Post</p>
         <ul>
-        <li><label for "delete-postid">Post ID: </label>
-        <input type="number" name="delete-username"></li>
-
             <li><label for "delete-userid">User ID: </label>
-        <input type="number" name="delete-username"></li>
+        <select name="delete-userid">
+        {{#each users}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
 
             <li><label for "delete-timestamp">Timestamp: </label>
         <input type="time" name="delete-timestamp"></li>

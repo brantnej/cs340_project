@@ -6,15 +6,13 @@
 
         <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
         <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.runtime.js"></script>
-        <script src="index.js" charset="utf-8" defer></script>
+        <script src="/index.js" charset="utf-8" defer></script>
         
     </head>
     <body>
         {{> header}}
         <article class="description">
-            Leaving a box blank means that the CRUD function will not care about it when it generates the WHILE section of the query. For example, pressing select without typing in ID will select all
-            items in the relation. If something is typed into a box, it will select only where the row matches the value of that box for its column. If two boxes are used, then the row must match both.
-            This means that Delete with empty controls will delete the entire relation, so be careful.
+            Some boxes include a blank option. Selecting this option will make it match anything for that column, instead of a specific value.
         </article>
         {{{body}}}
     </body>

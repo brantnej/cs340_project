@@ -1,3 +1,11 @@
+var mysql = require('mysql');
+var pool = mysql.createPool({
+  host  : 'classmysql.engr.oregonstate.edu',
+  user  : 'cs340_brantnej',
+  password: '8828',
+  database: 'cs340_brantnej'
+});
+
 const util = require('util')
 require('util.promisify').shim();
 var path = require('path')
@@ -15,7 +23,7 @@ app.use(express.static('public'));
 app.use('text/css', express.static(__dirname + '/public/style.css'))
 app.use('application/javascript', express.static(__dirname + '/public/index.js'))
 
-var port = process.argv[2]
+var port = 28828
 
 var tables = ["Users", "Posts", "Comments", "Games", "Developers", "Friendships", "GameOwnerships"]
 
@@ -28,20 +36,109 @@ app.get('/', (req, res, next) => {
     res.status(200).render('index', Context)
 })
 
-app.get('/table/:tableName', (req, res, next) =>{
+app.get('/table/Games', (req, res, next)=>{
+  var Context = {"tables":[], "developers":[]};
+  for (i = 0; i < tables.length; i++)
+  {
+    Context.tables.push({"table": tables[i]})
+  }
+  pool.query('SELECT DeveloperID, DeveloperName FROM Developers', function(err, rows, fields){
+    for (i = 0; i < rows.length; i++)
+    {
+      Context.developers.push({"id" : rows[i].DeveloperID, "name": rows[i].DeveloperName})
+    }
+    res.status(200).render('Games', Context)
+  })
+})
+
+app.get('/table/Posts', (req, res, next)=>{
+  var Context = {"tables":[], "users":[]};
+  for (i = 0; i < tables.length; i++)
+  {
+    Context.tables.push({"table": tables[i]})
+  }
+  pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
+    for (i = 0; i < rows.length; i++)
+    {
+      Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
+    }
+    res.status(200).render('Posts', Context)
+  })
+})
+
+app.get('/table/Friendships', (req, res, next)=>{
+  var Context = {"tables":[], "users":[]};
+  for (i = 0; i < tables.length; i++)
+  {
+    Context.tables.push({"table": tables[i]})
+  }
+  pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
+    for (i = 0; i < rows.length; i++)
+    {
+      Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
+    }
+    res.status(200).render('Friendships', Context)
+  })
+})
+
+app.get('/table/Users', (req, res, next)=>{
   var Context = {"tables":[]};
   for (i = 0; i < tables.length; i++)
   {
     Context.tables.push({"table": tables[i]})
   }
-  if (tables.includes(req.params.tableName))
+  res.status(200).render('Users', Context)
+})
+
+app.get('/table/Developers', (req, res, next)=>{
+  var Context = {"tables":[]};
+  for (i = 0; i < tables.length; i++)
   {
-    res.status(200).render(req.params.tableName, Context)
-  } 
-  else
-  {
-    res.status(400).render('404', Context)
+    Context.tables.push({"table": tables[i]})
   }
+  res.status(200).render('Developers', Context)
+})
+
+app.get('/table/GameOwnerships', (req, res, next)=>{
+  var Context = {"tables":[], "users":[], "games":[]};
+  for (i = 0; i < tables.length; i++)
+  {
+    Context.tables.push({"table": tables[i]})
+  }
+  pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
+    for (i = 0; i < rows.length; i++)
+    {
+      Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
+    }
+    pool.query('SELECT GameID, GameName FROM Games', function(err, rows, fields){
+      for (i = 0; i < rows.length; i++)
+      {
+        Context.games.push({"id" : rows[i].GameID, "name": rows[i].GameName})
+      }
+      res.status(200).render('GameOwnerships', Context)
+    })
+  })
+})
+
+app.get('/table/Comments', (req, res, next)=>{
+  var Context = {"tables":[], "users":[], "posts":[]};
+  for (i = 0; i < tables.length; i++)
+  {
+    Context.tables.push({"table": tables[i]})
+  }
+  pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
+    for (i = 0; i < rows.length; i++)
+    {
+      Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
+    }
+    pool.query('SELECT PostID, Content FROM Posts', function(err, rows, fields){
+      for (i = 0; i < rows.length; i++)
+      {
+        Context.posts.push({"id" : rows[i].PostID, "content": rows[i].Content})
+      }
+      res.status(200).render('Comments', Context)
+    })
+  })
 })
 
 app.get('*', (req, res, next) =>{
@@ -59,3 +156,7 @@ app.listen(port, function (err) {
     }
     console.log("== Server listening on port", port);
   });
+
+  app.get('/create/User', (req, res, next)=>{
+    //do something
+  })

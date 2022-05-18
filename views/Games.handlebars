@@ -6,7 +6,11 @@
         <input type="text" name="create-gamename"></li>
 
         <li><label for "create-developer-id">Developer ID: </label>
-        <input type="number" name="create-developer-id"></li>
+        <select name="create-developer-id">
+        {{#each developers}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>    
 
             <li><label for "create-releasedate">Release Date: </label>
         <input type="date" name="create-birthdate"></li>
@@ -18,14 +22,15 @@
     <article>
         <p>Retrieve Game</p>
         <ul>
-            <li><label for "retrieve-gameid">Game ID: </label>
-        <input type="number" name="retrieve-gameid"></li>
-
             <li><label for "retrieve-gamename">Game Name: </label>
         <input type="text" name="retrieve-gamename"></li>
 
         <li><label for "retrieve-developer-id">Developer ID: </label>
-        <input type="number" name="retrieve-developer-id"></li>
+        <select name="retrieve-developer-id">
+        {{#each developers}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
 
             <li><label for "retrieve-releasedate">Release Date: </label>
         <input type="date" name="retrieve-birthdate"></li>
@@ -53,14 +58,15 @@
     <article>
         <p>Update Game</p>
         <ul>
-            <li><label for "update-gameid">Game ID: </label>
-        <input type="number" name="update-gameid"></li>
-
             <li><label for "update-old-gamename">Old Game Name: </label>
         <input type="text" name="update-old-gamename"></li>
 
         <li><label for "update-old-developer-id">Old Developer ID: </label>
-        <input type="number" name="update-old-developer-id"></li>
+        <select name="update-old-developer-id">
+        {{#each developers}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
 
             <li><label for "update-old-releasedate">Old Release Date: </label>
         <input type="date" name="update-old-birthdate"></li>
@@ -69,7 +75,11 @@
         <input type="text" name="update-new-gamename"></li>
 
         <li><label for "update-new-developer-id">New Developer ID: </label>
-        <input type="number" name="update-new-developer-id"></li>
+        <select name="update-new-developer-id">
+        {{#each developers}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
 
             <li><label for "update-new-releasedate">New Release Date: </label>
         <input type="date" name="update-new-birthdate"></li>
@@ -81,14 +91,15 @@
     <article>
         <p>Delete Game</p>
         <ul>
-            <li><label for "delete-gameid">Game ID: </label>
-        <input type="number" name="delete-gameid"></li>
-
             <li><label for "delete-gamename">Game Name: </label>
         <input type="text" name="delete-gamename"></li>
 
         <li><label for "delete-developer-id">Developer ID: </label>
-        <input type="number" name="delete-developer-id"></li>
+        <select name="delete-developer-id">
+        {{#each developers}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
 
             <li><label for "delete-releasedate">Release Date: </label>
         <input type="date" name="delete-birthdate"></li>

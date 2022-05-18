@@ -4,19 +4,27 @@
         <ul>
             <li>
                 <label for="create-userID">User ID:</label>
-                <input type = "number" name ="create-userID">
+                <select name="create-userID">
+        {{#each users}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
             </li>
             <li>
                 <label for="create-postID">Post ID:</label>
-                <input type = "number" name ="create-postID">
+                <select name="create-postID">
+        {{#each posts}}
+            <option value={{id}}>{{id}} - {{content}}</option>
+        {{/each}}
+        </select>
             </li>
             <li>
                 <label for="create-timestamp">TimeStamp:</label>
-                <input type = "datetime" name ="create-timestamp">
+                <input type = "datetime-local" name ="create-timestamp">
             </li>
             <li>
                 <label for="create-content">Content:</label>
-                <input type = "text" name ="create-content">
+                <textarea name ="create-content"></textarea>
             </li>
             <li>
                 <button>Create Comment</button>
@@ -24,26 +32,26 @@
         </ul>
     </article>
     <article>
-    <p>Delete Comment</p>
+    <p>Delete Comments on Post</p>
         <ul>
             <li>
                 <label for="delete-userID">User ID:</label>
-                <input type = "number" name ="delete-userID">
+                <select name="delete-userID">
+        {{#each users}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
             </li>
             <li>
                 <label for="delete-postID">Post ID:</label>
-                <input type = "number" name ="delete-postID">
+                <select name="delete-postID">
+        {{#each posts}}
+            <option value={{id}}>{{id}} - {{content}}</option>
+        {{/each}}
+        </select>
             </li>
             <li>
-                <label for="delete-timestamp">TimeStamp:</label>
-                <input type = "datetime" name ="delete-timestamp">
-            </li>
-            <li>
-                <label for="delete-content">Content:</label>
-                <input type = "text" name ="delete-content">
-            </li>
-            <li>
-                <button>Delete Comment</button>
+                <button id="delete-comment">Delete Comment</button>
             </li>
         </ul>
     </article>
@@ -52,27 +60,24 @@
     <p>Retrieve Comment</p>
         <ul>
             <li>
-                <label for="select-commentId">Comment ID:</label>
-                <input type = "number" name ="select-commentId">
-            </li>
-            <li>
                 <label for="select-userID">User ID:</label>
-                <input type = "number" name ="select-userID">
+                <select name="select-userID">
+                    <option value="NULL"></option>
+        {{#each users}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
             </li>
             <li>
                 <label for="select-postID">Post ID:</label>
-                <input type = "number" name ="select-postID">
+                <select name="select-postID">
+        {{#each posts}}
+            <option value={{id}}>{{id}} - {{content}}</option>
+        {{/each}}
+        </select>
             </li>
             <li>
-                <label for="select-timestamp">TimeStamp:</label>
-                <input type = "datetime" name ="select-timestamp">
-            </li>
-            <li>
-                <label for="select-content">Content:</label>
-                <input type = "text" name ="select-content">
-            </li>
-            <li>
-                <button>Select Comment</button>
+                <button id="select-comment">Select Comment</button>
             </li>
         </ul>
          <table class="output">
@@ -92,41 +97,5 @@
                 <th></th>
             </tr>
         </table> 
-    </article>
-    <article>
-    <p>Update Comment</p>
-        <ul>
-            <li>
-                <label for="update-commentId">Comment ID:</label>
-                <input type = "number" name ="update-commentId">
-            </li>
-            <li>
-                <label for="update-old-userID">Old User ID:</label>
-                <input type = "number" name ="update-old-userID">
-                <label for="update-new-userID">New User ID:</label>
-                <input type = "number" name ="update-new-userID">
-            </li>
-            <li>
-                <label for="update-old-postID">Old Post ID:</label>
-                <input type = "number" name ="update-old-postID">
-                <label for="update-new-postID">New Post ID:</label>
-                <input type = "number" name ="update-new-postID">
-            </li>
-            <li>
-                <label for="update-old-timestamp">Old TimeStamp:</label>
-                <input type = "datetime" name ="update-old-timestamp">
-                <label for="update-new-timestamp">New TimeStamp:</label>
-                <input type = "datetime" name ="update-new-timestamp">
-            </li>
-            <li>
-                <label for="update-old-content">Old Content:</label>
-                <input type = "text" name ="update-old-content">
-                <label for="update-new-content">New Content:</label>
-                <input type = "text" name ="update-new-content">
-            </li>
-            <li>
-                <button>Update Comment</button>
-            </li>
-        </ul>
     </article>
 </main>
