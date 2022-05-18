@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
   host  : 'classmysql.engr.oregonstate.edu',
   user  : 'cs340_brantnej',
-  password: '8828',
+  password: process.argv[2],
   database: 'cs340_brantnej'
 });
 
@@ -23,7 +23,7 @@ app.use(express.static('public'));
 app.use('text/css', express.static(__dirname + '/public/style.css'))
 app.use('application/javascript', express.static(__dirname + '/public/index.js'))
 
-var port = 28828
+var port = process.argv[3];
 
 var tables = ["Users", "Posts", "Comments", "Games", "Developers", "Friendships", "GameOwnerships"]
 
