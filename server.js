@@ -187,6 +187,15 @@ app.listen(port, function (err) {
     console.log("== Server listening on port", port);
   });
 
-  app.get('/create/User', (req, res, next)=>{
-    //do something
+  app.post('/create/User', (req, res, next)=>{
+    var result = req.body
+    pool.query("INSERT INTO Users (UserName, BirthDate, ProfileMessage) VALUES (?, ?, ?);", [result.name, result.birthdate, result.profilemessage], function(err){
+      if (err)
+      {
+        res.status(500).send("Error inserting data")
+      }
+      else{
+        res.status(200).send()
+      }
+    })
   })

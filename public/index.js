@@ -8,8 +8,6 @@ document.getElementById("create-user").addEventListener("click", function(){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
-          } else {
-            window.location.href = "/fullDeckPage/" + newName
           }
     })
     content = {
