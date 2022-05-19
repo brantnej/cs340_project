@@ -23,10 +23,16 @@
         <p>Retrieve Game</p>
         <ul>
             <li><label for "retrieve-gamename">Game Name: </label>
-        <input type="text" name="retrieve-gamename"></li>
+        <select name="retrieve-gamename">
+            <option value="NULL"></option>
+        {{#each games}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
 
         <li><label for "retrieve-developer-id">Developer ID: </label>
         <select name="retrieve-developer-id">
+            <option value="NULL"></option>
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -59,17 +65,11 @@
         <p>Update Game</p>
         <ul>
             <li><label for "update-old-gamename">Old Game Name: </label>
-        <input type="text" name="update-old-gamename"></li>
-
-        <li><label for "update-old-developer-id">Old Developer ID: </label>
-        <select name="update-old-developer-id">
-        {{#each developers}}
+         <select name="update-old-gamename">
+        {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
-
-            <li><label for "update-old-releasedate">Old Release Date: </label>
-        <input type="date" name="update-old-birthdate"></li>
 
          <li><label for "update-new-gamename">New Game Name: </label>
         <input type="text" name="update-new-gamename"></li>
@@ -92,17 +92,20 @@
         <p>Delete Game</p>
         <ul>
             <li><label for "delete-gamename">Game Name: </label>
-        <input type="text" name="delete-gamename"></li>
-
-        <li><label for "delete-developer-id">Developer ID: </label>
-        <select name="delete-developer-id">
-        {{#each developers}}
+        <select name="update-old-gamename">
+            <option value="NULL"></option>
+        {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
 
-            <li><label for "delete-releasedate">Release Date: </label>
-        <input type="date" name="delete-birthdate"></li>
+        <li><label for "delete-developer-id">Developer ID: </label>
+        <select name="delete-developer-id">
+            <option value="NULL"></option>
+        {{#each developers}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
 
         <li><button>Delete Game</button></li>
         </ul>

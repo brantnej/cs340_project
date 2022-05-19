@@ -11,32 +11,33 @@
             </li>
         </ul>
     </article>
-<<<<<<< HEAD
     <article>
     <p>Delete Developer</p>
         <ul>
             <li>
                 <label for="delete-developer-name">Developer Name:</label>
-                <input type = "text" name ="delete-developer-name">
+                <select name="delete-developer-name">
+        {{#each developers}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
             </li>
             <li>
                 <button>Delete Developer</button>
             </li>
         </ul>
     </article>
-=======
-    
->>>>>>> f28ba6e06804b8461af7fad4d39e403966963beb
     <article>
     <p>Retrieve Developer</p>
         <ul>
             <li>
-                <label for="select-developer-id">Developer ID:</label>
-                <input type = "number" name ="select-developer-id">
-            </li>
-            <li>
                 <label for="select-developer-name">Developer Name:</label>
-                <input type = "text" name ="select-developer-name">
+                <select name="select-developer-name">
+                    <option value="NULL"></option>
+        {{#each developers}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
             </li>
             <li>
                 <button>Select Developer</button>
@@ -60,33 +61,18 @@
     <p>Update Developer</p>
         <ul>
             <li>
-                <label for="update-developer-id">Developer ID:</label>
-                <input type = "number" name ="update-developer-id">
-            </li>
-            <li>
                 <label for="update-old-developer-name">Old Developer Name:</label>
-                <input type = "text" name ="update-old-developer-name">
+                <select name="update-old-developer-name">
+                    <option value="NULL"></option>
+        {{#each developers}}
+            <option value={{id}}>{{id}} - {{name}}</option>
+        {{/each}}
+        </select>
                 <label for="update-new-developer-name">New Developer Name:</label>
                 <input type = "text" name ="update-new-developer-name">
             </li>
             <li>
                 <button>Update Developer</button>
-            </li>
-        </ul>
-    </article>
-    <article>
-    <p>Delete Developer</p>
-        <ul>
-            <li>
-                <label for="delete-developer-id">Developer ID:</label>
-                <input type = "number" name ="delete-developer-id">
-            </li>
-            <li>
-                <label for="delete-developer-name">Developer Name:</label>
-                <input type = "text" name ="delete-developer-name">
-            </li>
-            <li>
-                <button>Delete Developer</button>
             </li>
         </ul>
     </article>

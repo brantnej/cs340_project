@@ -20,20 +20,20 @@
             </li>
             <li>
                 <label for="create-purchase-date">Purchase Date:</label>
-                <input type = "datetime" name ="create-purchase-date">
+                <input type="date" name ="create-purchase-date">
             </li>
             <li>
                 <button>Create Game Ownership</button>
             </li>
         </ul>
     </article>
-<<<<<<< HEAD
     <article>
     <p>Delete GameOwnership</p> 
         <ul>
             <li>
                 <label for="delete-userID">User ID:</label>
                 <select name="delete-userID">
+                    <option value="NULL"></option>
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -42,6 +42,7 @@
             <li>
                 <label for="delete-gameID">Game ID:</label>
                 <select name="delete-gameID">
+                    <option value="NULL"></option>
         {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -52,9 +53,6 @@
             </li>
         </ul>
     </article>
-=======
-    
->>>>>>> f28ba6e06804b8461af7fad4d39e403966963beb
     <article>
     <p>Select GameOwnership</p> 
         <ul>
@@ -94,54 +92,4 @@
             </tr>
         </table> 
     </article>
-<<<<<<< HEAD
 </main>
-=======
-    <article>
-    <p>Update GameOwnership</p> 
-        <ul>
-            <li>
-                <label for="update-old-userID">Old User ID:</label>
-                <input type = "number" name ="update-old-userID">
-                <label for="update-new-userID">New User ID:</label>
-                <input type = "number" name ="update-new-userID">
-            </li>
-            <li>
-                <label for="update-old-gameID">Old Game ID:</label>
-                <input type = "number" name ="update-old-gameID">
-                <label for="update-new-gameID">New Game ID:</label>
-                <input type = "number" name ="update-new-gameID">
-            </li>
-            <li>
-                <label for="update-old-purchase-date">Old Purchase Date:</label>
-                <input type = "datetime" name ="update-old-purchase-date">
-                <label for="update-new-purchase-date">New Purchase Date:</label>
-                <input type = "datetime" name ="update-new-purchase-date">
-            </li>
-            <li>
-                <button>Update Game Ownership</button>
-            </li>
-        </ul>
-    </article>
-    <article>
-    <p>Delete GameOwnership</p> 
-        <ul>
-            <li>
-                <label for="delete-userID">User ID:</label>
-                <input type = "number" name ="delete-userID">
-            </li>
-            <li>
-                <label for="delete-gameID">Game ID:</label>
-                <input type = "number" name ="delete-gameID">
-            </li>
-            <li>
-                <label for="delete-purchase-date">Purchase Date:</label>
-                <input type = "datetime" name ="delete-purchase-date">
-            </li>
-            <li>
-                <button>Delete Game Ownership</button>
-            </li>
-        </ul>
-    </article>
-</main>
->>>>>>> f28ba6e06804b8461af7fad4d39e403966963beb
