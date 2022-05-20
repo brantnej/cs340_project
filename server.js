@@ -199,3 +199,16 @@ app.listen(port, function (err) {
       }
     })
   })
+
+  app.post('/retrieve/User', (req,res,next)=>{
+    var result = req.body
+    pool.query("SELECT * FROM Users WHERE ((UserName = ? OR ?=\'\') AND (BirthDate = ? OR ?=\'\'));", [result.name, result.name, result.birthdate, result.birthdate], function(err, rows, fields){
+      if (err)
+      {
+        res.status(500).send("error retrieving data")
+      }
+      else {
+        res.status(200).send(JSON.stringify(rows))
+      }
+    })
+  })
