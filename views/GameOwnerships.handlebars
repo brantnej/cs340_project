@@ -4,7 +4,7 @@
         <ul>
             <li>
                 <label for="create-userID">User ID:</label>
-                <select name="create-userID">
+                <select id="create-userID">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -12,7 +12,7 @@
             </li>
             <li>
                 <label for="create-gameID">Game ID:</label>
-                <select name="create-gameID">
+                <select id="create-gameID">
         {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -20,10 +20,10 @@
             </li>
             <li>
                 <label for="create-purchase-date">Purchase Date:</label>
-                <input type="date" name ="create-purchase-date">
+                <input type="date" id ="create-purchase-date">
             </li>
             <li>
-                <button>Create Game Ownership</button>
+                <button id="create-game-ownership">Create Game Ownership</button>
             </li>
         </ul>
     </article>
@@ -32,7 +32,7 @@
         <ul>
             <li>
                 <label for="delete-userID">User ID:</label>
-                <select name="delete-userID">
+                <select id="delete-userID">
                     <option value="NULL"></option>
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
@@ -41,7 +41,7 @@
             </li>
             <li>
                 <label for="delete-gameID">Game ID:</label>
-                <select name="delete-gameID">
+                <select id="delete-gameID">
                     <option value="NULL"></option>
         {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
@@ -49,16 +49,16 @@
         </select> 
             </li>
             <li>
-                <button>Delete Game Ownership</button>
+                <button id="delete-game-ownership">Delete Game Ownership</button>
             </li>
         </ul>
     </article>
     <article>
-    <p>Select GameOwnership</p> 
+    <p>Retrieve GameOwnership</p> 
         <ul>
             <li>
-                <label for="select-userID">User ID:</label>
-                <select name="select-userID">
+                <label for="retrieve-userID">User ID:</label>
+                <select id="retrieve-userID">
                      <option value="NULL"></option>
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
@@ -66,8 +66,8 @@
         </select>
             </li>
             <li>
-                <label for="select-gameID">Game ID:</label>
-                <select name="select-gameID">
+                <label for="retrieve-gameID">Game ID:</label>
+                <select id="retrieve-gameID">
                     <option value="NULL"></option>
         {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
@@ -75,10 +75,10 @@
         </select> 
             </li>
             <li>
-                <button>Select Game Ownership</button>
+                <button id="retrieve-game-ownership">Retrieve Game Ownership</button>
             </li>
         </ul>
-                <table class="output">
+                <table class="output" id="output-game-ownerships">
             <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
             <tr>
                 <th>User ID</th>

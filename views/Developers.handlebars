@@ -4,10 +4,10 @@
         <ul>
             <li>
                 <label for="create-developer-name">Developer Name:</label>
-                <input type = "text" name ="create-developer-name">
+                <input type = "text" id ="create-developer-name">
             </li>
             <li>
-                <button>Create Developer</button>
+                <button id="create-developer">Create Developer</button>
             </li>
         </ul>
     </article>
@@ -16,7 +16,7 @@
         <ul>
             <li>
                 <label for="delete-developer-name">Developer Name:</label>
-                <select name="delete-developer-name">
+                <select id="delete-developer-name">
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -31,8 +31,8 @@
     <p>Retrieve Developer</p>
         <ul>
             <li>
-                <label for="select-developer-name">Developer Name:</label>
-                <select name="select-developer-name">
+                <label for="retrieve-developer-name">Developer Name:</label>
+                <select id="retrieve-developerID">
                     <option value="NULL"></option>
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
@@ -40,11 +40,11 @@
         </select>
             </li>
             <li>
-                <button>Select Developer</button>
+                <button id="retrieve-developer">Retrieve Developer</button>
             </li>
         </ul>
         
-        <table class="output">
+        <table class="output" id="output-developers">
             <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
             <tr>
                 <th>Developer ID</th>
@@ -62,14 +62,14 @@
         <ul>
             <li>
                 <label for="update-old-developer-name">Old Developer Name:</label>
-                <select name="update-old-developer-name">
+                <select id="update-old-developer-name">
                     <option value="NULL"></option>
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
                 <label for="update-new-developer-name">New Developer Name:</label>
-                <input type = "text" name ="update-new-developer-name">
+                <input type = "text" id ="update-new-developer-name">
             </li>
             <li>
                 <button>Update Developer</button>
