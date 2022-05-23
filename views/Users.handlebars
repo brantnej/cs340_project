@@ -2,13 +2,13 @@
     <article>
         <p>Create User</p>
         <ul>
-            <li><label for "create-username">User Name: </label>
+            <li><label for ="create-username">User Name: </label>
         <input type="text" id="create-username"></li>
 
-            <li><label for "create-birthdate">Birthdate: </label>
+            <li><label for ="create-birthdate">Birthdate: </label>
         <input type="date" id="create-birthdate"></li>
 
-            <li><label for "create-profile-message">Profile Message: </label>
+            <li><label for ="create-profile-message">Profile Message: </label>
         <input type="text" id="create-profile-message"></li>
 
         <li><button id="create-user">Create User</button></li>
@@ -18,10 +18,10 @@
     <article>
         <p>Retrieve User</p>
         <ul>
-            <li><label for "retrieve-username">User Name: </label>
+            <li><label for ="retrieve-username">User Name: </label>
         <input type="text" id="retrieve-username"></li>
 
-            <li><label for "retrieve-birthdate">Birthdate: </label>
+            <li><label for ="retrieve-birthdate">Birthdate: </label>
         <input type="date" id="retrieve-birthdate"></li>
 
         <li><button id="retrieve-user">Retrieve Users</button></li>
@@ -47,19 +47,19 @@
     <article>
         <p>Update User</p>
         <ul>
-            <li><label for "update-old-username">Old User Name: </label>
+            <li><label for ="update-old-username">Old User Name: </label>
         <select name="update-old-username">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
-            <li><label for "update-new-username">New User Name: </label>
+            <li><label for ="update-new-username">New User Name: </label>
         <input type="text" name="update-new-username"></li>
 
-            <li><label for "update-new-birthdate">New Birthdate: </label>
+            <li><label for ="update-new-birthdate">New Birthdate: </label>
         <input type="date" name="update-new-birthdate"></li>
 
-            <li><label for "update-new-profile-message">New Profile Message: </label>
+            <li><label for ="update-new-profile-message">New Profile Message: </label>
         <input type="text" name="update-new-profile-message"></li>
 
         <li><button>Update Users</button></li>
@@ -69,7 +69,7 @@
     <article>
         <p>Delete User</p>
         <ul>
-            <li><label for "delete-username">User Name: </label>
+            <li><label for ="delete-username">User Name: </label>
         <select name="delete-username">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>

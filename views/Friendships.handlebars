@@ -4,7 +4,7 @@
         <ul>
             <li>
                 <label for="create-userID-1">User ID 1:</label>
-               <select name="create-userID-1">
+               <select id="create-userID-1">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -12,7 +12,7 @@
             </li>
             <li>
                 <label for="create-userID-2">User ID 2:</label>
-                <select name="create-userID-2">
+                <select id="create-userID-2">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -20,10 +20,10 @@
             </li>
             <li>
                 <label for="create-friend-date">Friend Date:</label>
-                <input type = "date" name ="create-timestamp">
+                <input type = "date" id ="create-friend-date">
             </li>
             <li>
-                <button>Create Friendship</button>
+                <button id="create-friendship">Create Friendship</button>
             </li>
         </ul>
     </article>
@@ -32,7 +32,7 @@
         <ul>
             <li>
                 <label for="delete-userID-1">User ID 1:</label>
-                <select name="delete-userID-1">
+                <select id="delete-userID-1">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -40,7 +40,7 @@
             </li>
             <li>
                 <label for="delete-userID-2">User ID 2:</label>
-                <select name="delete-userID-2">
+                <select id="delete-userID-2">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
@@ -55,18 +55,18 @@
     <p>Retrieve Friendships for a User</p>
         <ul>
             <li>
-                <label for="select-userID-1">User ID:</label>
-                <select name="select-userID-1">
+                <label for="retrieve-userID">User ID:</label>
+                <select id="retrieve-userID">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
             </li>
             <li>
-                <button>Select Friendship</button>
+                <button id="retrieve-friendship">Retrieve Friendship</button>
             </li>
         </ul>
-            <table class="output">
+            <table class="output" id="output-friendships">
             <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
             <tr>
                 <th>User ID 1</th>

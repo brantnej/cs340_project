@@ -2,18 +2,18 @@
     <article>
         <p>Create Game</p>
         <ul>
-            <li><label for "create-gamename">Game Name: </label>
-        <input type="text" name="create-gamename"></li>
+            <li><label for = "create-game-name">Game Name: </label>
+        <input type="text" id="create-game-name"></li>
 
-        <li><label for "create-developer-id">Developer ID: </label>
-        <select name="create-developer-id">
+        <li><label for = "create-developer-id">Developer ID: </label>
+        <select id="create-developer-id">
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>    
 
-            <li><label for "create-releasedate">Release Date: </label>
-        <input type="date" name="create-birthdate"></li>
+            <li><label for = "create-release-date">Release Date: </label>
+        <input type="date" id ="create-release-date"></li>
 
         <li><button>Create Game</button></li>
         </ul>
@@ -22,29 +22,29 @@
     <article>
         <p>Retrieve Game</p>
         <ul>
-            <li><label for "retrieve-gamename">Game Name: </label>
-        <select name="retrieve-gamename">
+            <li><label for = "retrieve-gameID">Game Name: </label>
+        <select id="retrieve-game-id">
             <option value="NULL"></option>
         {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
 
-        <li><label for "retrieve-developer-id">Developer ID: </label>
-        <select name="retrieve-developer-id">
+        <li><label for ="retrieve-developer-id">Developer ID: </label>
+        <select id="retrieve-developer-id">
             <option value="NULL"></option>
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
 
-            <li><label for "retrieve-releasedate">Release Date: </label>
-        <input type="date" name="retrieve-birthdate"></li>
+            <li><label for ="retrieve-release-date">Release Date: </label>
+        <input type="date" id="retrieve-release-date"></li>
 
-        <li><button>Retrieve Games</button></li>
+        <li><button id="retrieve-games">Retrieve Games</button></li>
         </ul>
 
-        <table class="output">
+        <table class="output" id="output-games">
             <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
             <tr>
                 <th>Game ID</th>
@@ -64,25 +64,25 @@
     <article>
         <p>Update Game</p>
         <ul>
-            <li><label for "update-old-gamename">Old Game Name: </label>
-         <select name="update-old-gamename">
+            <li><label for "update-old-game-name">Old Game Name: </label>
+         <select id="update-old-game-name">
         {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
 
-         <li><label for "update-new-gamename">New Game Name: </label>
-        <input type="text" name="update-new-gamename"></li>
+         <li><label for "update-new-game-name">New Game Name: </label>
+        <input type="text" name="update-new-game-name"></li>
 
         <li><label for "update-new-developer-id">New Developer ID: </label>
-        <select name="update-new-developer-id">
+        <select id="update-new-developer-id">
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
 
-            <li><label for "update-new-releasedate">New Release Date: </label>
-        <input type="date" name="update-new-birthdate"></li>
+            <li><label for "update-new-release-date">New Release Date: </label>
+        <input type="date" id ="update-new-release-date"></li>
 
         <li><button>Update Games</button></li>
         </ul>
@@ -91,8 +91,8 @@
     <article>
         <p>Delete Game</p>
         <ul>
-            <li><label for "delete-gamename">Game Name: </label>
-        <select name="update-old-gamename">
+            <li><label for "delete-game-name">Game Name: </label>
+        <select id="update-old-game-name">
             <option value="NULL"></option>
         {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
@@ -100,14 +100,14 @@
         </select>
 
         <li><label for "delete-developer-id">Developer ID: </label>
-        <select name="delete-developer-id">
+        <select id="delete-developer-id">
             <option value="NULL"></option>
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
 
-        <li><button>Delete Game</button></li>
+        <li><button id="delete-game">Delete Game</button></li>
         </ul>
     </article>
 </main>

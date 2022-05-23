@@ -5,104 +5,68 @@
             <li>
                 <label for="create-userID">User ID:</label>
                 <select name="create-userID">
-        {{#each users}}
-            <option value={{id}}>{{id}} - {{name}}</option>
-        {{/each}}
-        </select>
+                    {{#each users}}
+                    <option value={{id}}>{{id}} - {{name}}</option>
+                    {{/each}}
+                </select>
             </li>
             <li>
                 <label for="create-postID">Post ID:</label>
-                <select name="create-postID">
-        {{#each posts}}
-            <option value={{id}}>{{id}} - {{content}}</option>
-        {{/each}}
-        </select>
+                <select id="create-postID">
+                    {{#each posts}}
+                    <option value={{id}}>{{id}} - {{content}}</option>
+                    {{/each}}
+                </select>
             </li>
             <li>
                 <label for="create-timestamp">TimeStamp:</label>
-                <input type = "datetime-local" name ="create-timestamp">
+                <input type="datetime-local" name="create-timestamp">
             </li>
             <li>
                 <label for="create-content">Content:</label>
-                <textarea name ="create-content"></textarea>
+                <textarea id="create-content"></textarea>
             </li>
             <li>
-                <button>Create Comment</button>
-            </li>
-        </ul>
-    </article>
-    <article>
-    <p>Delete Comments</p>
-        <ul>
-            <li>
-                <label for="delete-commentID">Comment ID:</label>
-                <select name="delete-commentID">
-                    <option value="NULL"></option>
-        {{#each comments}}
-            <option value={{id}}>{{id}} - {{content}}</option>
-        {{/each}}
-        </select>
-            </li>
-        <li>
-        </select>
-                <label for="delete-userID">User ID:</label>
-                <select name="delete-userID">
-                    <option value="NULL"></option>
-        {{#each users}}
-            <option value={{id}}>{{id}} - {{name}}</option>
-        {{/each}}
-        </select>
-            </li>
-            <li>
-                <label for="delete-postID">Post ID:</label>
-                <select name="delete-postID">
-                    <option value="NULL"></option>
-        {{#each posts}}
-            <option value={{id}}>{{id}} - {{content}}</option>
-        {{/each}}
-        </select>
-            </li>
-            <li>
-                <button id="delete-comment">Delete Comment</button>
+                <button id="create-comment">Create Comment</button>
             </li>
         </ul>
     </article>
 
     <article>
-    <p>Retrieve Comment</p>
+        <p>Retrieve Comment</p>
         <ul>
             <li>
-                <label for="select-commentID">Comment ID:</label>
-                <select name="select-commentID">
+                <label for="retrieve-commentID">Comment ID:</label>
+                <select id="retrieve-commentID">
                     <option value="NULL"></option>
-        {{#each comments}}
-            <option value={{id}}>{{id}} - {{content}}</option>
-        {{/each}}
-        </select>
+                    {{#each comments}}
+                    <option value={{id}}>{{id}} - {{content}}</option>
+                    {{/each}}
+                </select>
             </li>
             <li>
-                <label for="select-userID">User ID:</label>
-                <select name="select-userID">
+                <label for="retrieve-userID">User ID:</label>
+                <select id="retrieve-userID">
                     <option value="NULL"></option>
-        {{#each users}}
-            <option value={{id}}>{{id}} - {{name}}</option>
-        {{/each}}
-        </select>
+                    {{#each users}}
+                    <option value={{id}}>{{id}} - {{name}}</option>
+                    {{/each}}
+                </select>
             </li>
             <li>
-                <label for="select-postID">Post ID:</label>
-                <select name="select-postID">
+                <label for="retrieve-postID">Post ID:</label>
+                <select id="retrieve-postID">
                     <option value="NULL"></option>
-        {{#each posts}}
-            <option value={{id}}>{{id}} - {{content}}</option>
-        {{/each}}
-        </select>
+                    {{#each posts}}
+                    <option value={{id}}>{{id}} - {{content}}</option>
+                    {{/each}}
+                </select>
             </li>
             <li>
-                <button id="select-comment">Select Comment</button>
+                <button id="retrieve-comment">Select Comment</button>
             </li>
         </ul>
-         <table class="output">
+        <table class="output" id="output-comments">
             <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
             <tr>
                 <th>Comment ID</th>
@@ -118,6 +82,41 @@
                 <th></th>
                 <th></th>
             </tr>
-        </table> 
+        </table>
+    </article>
+    <article>
+        <p>Delete Comments</p>
+        <ul>
+            <li>
+                <label for="delete-commentID">Comment ID:</label>
+                <select id="delete-commentID">
+                    <option value="NULL"></option>
+                    {{#each comments}}
+                    <option value={{id}}>{{id}} - {{content}}</option>
+                    {{/each}}
+                </select>
+            </li>
+            <li>
+                <label for="delete-userID">User ID:</label>
+                <select id="delete-userID">
+                    <option value="NULL"></option>
+                    {{#each users}}
+                    <option value={{id}}>{{id}} - {{name}}</option>
+                    {{/each}}
+                </select>
+            </li>
+            <li>
+                <label for="delete-postID">Post ID:</label>
+                <select id="delete-postID">
+                    <option value="NULL"></option>
+                    {{#each posts}}
+                    <option value={{id}}>{{id}} - {{content}}</option>
+                    {{/each}}
+                </select>
+            </li>
+            <li>
+                <button id="delete-comment">Delete Comment</button>
+            </li>
+        </ul>
     </article>
 </main>
