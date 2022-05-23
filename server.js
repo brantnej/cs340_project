@@ -11,7 +11,8 @@ require('util.promisify').shim();
 var path = require('path')
 var express = require('express')
 var exphbs = require('express-handlebars')
-const fs = require('fs')
+const fs = require('fs');
+const { resolve } = require('path');
 var app = express()
 const readFileAsync = util.promisify(fs.readFile);
 
@@ -36,8 +37,10 @@ app.get('/', (req, res, next) => {
     res.status(200).render('index', Context)
 })
 
-app.get('/table/Games', (req, res, next)=>{
-  var Context = {"tables":[], "developers":[], "games":[]};
+function getContext()
+{
+  return new Promise((resolve)=>{
+  var Context = {"tables":[], "developers":[], "games":[], "users":[], "posts":[], "comments":[]};
   for (i = 0; i < tables.length; i++)
   {
     Context.tables.push({"table": tables[i]})
@@ -52,123 +55,41 @@ app.get('/table/Games', (req, res, next)=>{
       {
         Context.games.push({"id" : rows[i].GameID, "name": rows[i].GameName})
       }
-      res.status(200).render('Games', Context)
-    })
-  })
-})
-
-app.get('/table/Posts', (req, res, next)=>{
-  var Context = {"tables":[], "users":[], "posts":[]};
-  for (i = 0; i < tables.length; i++)
-  {
-    Context.tables.push({"table": tables[i]})
-  }
-  pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
-    for (i = 0; i < rows.length; i++)
-    {
-      Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
-    }
-    pool.query('SELECT PostID, Content FROM Posts', function(err, rows, fields){
-      for (i = 0; i < rows.length; i++)
-      {
-        Context.posts.push({"id" : rows[i].PostID, "content": rows[i].Content})
-      }
-      res.status(200).render('Posts', Context)
-    })
-  })
-})
-
-app.get('/table/Friendships', (req, res, next)=>{
-  var Context = {"tables":[], "users":[]};
-  for (i = 0; i < tables.length; i++)
-  {
-    Context.tables.push({"table": tables[i]})
-  }
-  pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
-    for (i = 0; i < rows.length; i++)
-    {
-      Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
-    }
-    res.status(200).render('Friendships', Context)
-  })
-})
-
-app.get('/table/Users', (req, res, next)=>{
-  var Context = {"tables":[], "users":[]};
-  for (i = 0; i < tables.length; i++)
-  {
-    Context.tables.push({"table": tables[i]})
-  }
-  pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
-    for (i = 0; i < rows.length; i++)
-    {
-      Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
-    }
-    res.status(200).render('Users', Context)
-  })
-})
-
-app.get('/table/Developers', (req, res, next)=>{
-  var Context = {"tables":[], "developers":[]};
-  for (i = 0; i < tables.length; i++)
-  {
-    Context.tables.push({"table": tables[i]})
-  }
-  pool.query('SELECT DeveloperID, DeveloperName FROM Developers', function(err, rows, fields){
-    for (i = 0; i < rows.length; i++)
-    {
-      Context.developers.push({"id" : rows[i].DeveloperID, "name": rows[i].DeveloperName})
-    }
-  res.status(200).render('Developers', Context)
-  })
-})
-
-app.get('/table/GameOwnerships', (req, res, next)=>{
-  var Context = {"tables":[], "users":[], "games":[]};
-  for (i = 0; i < tables.length; i++)
-  {
-    Context.tables.push({"table": tables[i]})
-  }
-  pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
-    for (i = 0; i < rows.length; i++)
-    {
-      Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
-    }
-    pool.query('SELECT GameID, GameName FROM Games', function(err, rows, fields){
-      for (i = 0; i < rows.length; i++)
-      {
-        Context.games.push({"id" : rows[i].GameID, "name": rows[i].GameName})
-      }
-      res.status(200).render('GameOwnerships', Context)
-    })
-  })
-})
-
-app.get('/table/Comments', (req, res, next)=>{
-  var Context = {"tables":[], "users":[], "posts":[], "comments":[]};
-  for (i = 0; i < tables.length; i++)
-  {
-    Context.tables.push({"table": tables[i]})
-  }
-  pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
-    for (i = 0; i < rows.length; i++)
-    {
-      Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
-    }
-    pool.query('SELECT PostID, Content FROM Posts', function(err, rows, fields){
-      for (i = 0; i < rows.length; i++)
-      {
-        Context.posts.push({"id" : rows[i].PostID, "content": rows[i].Content})
-      }
-      pool.query('SELECT CommentID, Content FROM Comments', function(err, rows, fields){
+      pool.query('SELECT UserID, UserName FROM Users', function(err, rows, fields){
         for (i = 0; i < rows.length; i++)
         {
-          Context.comments.push({"id" : rows[i].CommentID, "content": rows[i].Content})
+          Context.users.push({"id" : rows[i].UserID, "name": rows[i].UserName})
         }
-        res.status(200).render('Comments', Context)
+        pool.query('SELECT PostID, Content FROM Posts', function(err, rows, fields){
+          for (i = 0; i < rows.length; i++)
+          {
+            Context.posts.push({"id" : rows[i].PostID, "content": rows[i].Content})
+          }
+          pool.query('SELECT CommentID, Content FROM Comments', function(err, rows, fields){
+            for (i = 0; i < rows.length; i++)
+            {
+              Context.comments.push({"id" : rows[i].CommentID, "content": rows[i].Content})
+            }
+            resolve(Context)
+          })
+        })
       })
     })
   })
+})
+}
+
+app.get('/table/:tableName', (req, res, next)=>{
+  if (tables.includes(req.params.tableName))
+  {
+    getContext().then((result) =>{
+      res.status(200).render(req.params.tableName, result)
+    })
+  }
+  else
+  {
+    next();
+  }
 })
 
 app.get('*', (req, res, next) =>{

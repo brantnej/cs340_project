@@ -15,7 +15,7 @@ document.getElementById("create-user").addEventListener("click", function(){
         birthdate: birthDate,
         profilemessage: profileMessage
     }
-    var requestURL = '/create/User'
+    var requestURL = '/create/Users'
     xmlHttp.open("POST", requestURL, true)
     xmlHttp.setRequestHeader('Content-Type', 'application/json')
     xmlHttp.send(JSON.stringify(content))
@@ -57,7 +57,7 @@ document.getElementById("retrieve-user").addEventListener("click", function(){
         name: username,
         birthdate: birthDate
     }
-    var requestURL = '/retrieve/User'
+    var requestURL = '/retrieve/Users'
     xmlHttp.open("POST", requestURL, true)
     xmlHttp.setRequestHeader('Content-Type', 'application/json')
     xmlHttp.send(JSON.stringify(content))
