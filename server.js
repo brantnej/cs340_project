@@ -113,7 +113,7 @@ app.listen(port, function (err) {
     pool.query("INSERT INTO Users (UserName, BirthDate, ProfileMessage) VALUES (?, ?, ?);", [result.name, result.birthdate, result.profilemessage], function(err){
       if (err)
       {
-        res.status(500).send("Error inserting data")
+        res.status(500).send(err.message)
       }
       else{
         res.status(200).send()
@@ -126,7 +126,7 @@ app.listen(port, function (err) {
     pool.query("SELECT * FROM Users WHERE ((UserName = ? OR ?=\'\') AND (BirthDate = ? OR ?=\'\'));", [result.name, result.name, result.birthdate, result.birthdate], function(err, rows, fields){
       if (err)
       {
-        res.status(500).send("error retrieving data")
+        res.status(500).send(err.message)
       }
       else {
         res.status(200).send(JSON.stringify(rows))
@@ -136,9 +136,9 @@ app.listen(port, function (err) {
 
 app.post('/create/Posts', (req, res, next) => {
     var result = req.body
-    pool.query("INSERT INTO Posts (UserId, TimeStamp, Content) VALUES (?, ?, ?);", [result.UserId, result.TimeStamp, result.Content], function (err) {
+    pool.query("INSERT INTO Posts (UserId, PostTime, Content) VALUES (?, ?, ?);", [result.UserId, result.TimeStamp, result.Content], function (err) {
         if (err) {
-            res.status(500).send("Error inserting data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send()
@@ -147,10 +147,10 @@ app.post('/create/Posts', (req, res, next) => {
 })
 
 app.post('/retrieve/Posts', (req, res, next) => {
-    var result = req.body
-    pool.query("SELECT * FROM Posts WHERE ((PostID = ? OR ?=\'\') AND (UserID = ? OR ?=\'\'));", [result.PostID, result.PostID, result.UserID, result.UserID], function (err, rows, fields) {
-        if (err) {
-            res.status(500).send("error retrieving data")
+  var result = req.body
+  pool.query("SELECT Content, PostTime, UserName FROM Posts natural join Users WHERE (Users.UserID = ? OR ? = \'NULL\');", [result.UserID, result.UserID], function (err, rows, fields) {
+    if (err) {
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send(JSON.stringify(rows))
@@ -160,9 +160,9 @@ app.post('/retrieve/Posts', (req, res, next) => {
 
 app.post('/create/Comments', (req, res, next) => {
     var result = req.body
-    pool.query("INSERT INTO Comments (PostID, UserId, TimeStamp, Content) VALUES (?, ?, ?, ?);", [result.PostId, result.UserId, result.TimeStamp, result.Content], function (err) {
+    pool.query("INSERT INTO Comments (PostID, UserID, TimeStamp, Content) VALUES (?, ?, ?, ?);", [result.PostID, result.UserID, result.TimeStamp, result.Content], function (err) {
         if (err) {
-            res.status(500).send("Error inserting data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send()
@@ -172,9 +172,9 @@ app.post('/create/Comments', (req, res, next) => {
 
 app.post('/retrieve/Comments', (req, res, next) => {
     var result = req.body
-    pool.query("SELECT * FROM Comments WHERE ((CommentID = ? OR ?=\'\') AND (PostID = ? OR ?=\'\') AND (UserID = ? OR ?=\'\'));", [result.CommentID, result.CommentID, result.PostID, result.PostID, result.UserID, result.UserID], function (err, rows, fields) {
+    pool.query("with all_posts as (select Posts.Content as OriginalPostContent, Users.UserName as OriginalPoster, Posts.PostID as OriginalPostID from Posts natural join Users) SELECT Comments.Content, Users.UserName, Comments.TimeStamp, all_posts.OriginalPoster, all_posts.OriginalPostContent from Users natural join Comments join all_posts on Comments.PostID = all_posts.OriginalPostID WHERE ((Comments.PostID = ? OR ?=\'NULL\') AND (Comments.UserID = ? OR ?=\'NULL\'));", [result.PostID, result.PostID, result.UserID, result.UserID], function (err, rows, fields) {
         if (err) {
-            res.status(500).send("error retrieving data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send(JSON.stringify(rows))
@@ -186,7 +186,7 @@ app.post('/create/Developers', (req, res, next) => {
     var result = req.body
     pool.query("INSERT INTO Developers (DeveloperName) VALUES (?);", [result.DeveloperName], function (err) {
         if (err) {
-            res.status(500).send("Error inserting data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send()
@@ -196,9 +196,9 @@ app.post('/create/Developers', (req, res, next) => {
 
 app.post('/retrieve/Developers', (req, res, next) => {
     var result = req.body
-    pool.query("SELECT * FROM Developers WHERE (DeveloperID = ? OR ?=\'\');", [result.DeveloperID, result.DeveloperID], function (err, rows, fields) {
+    pool.query("SELECT * FROM Developers;", function (err, rows, fields) {
         if (err) {
-            res.status(500).send("error retrieving data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send(JSON.stringify(rows))
@@ -210,7 +210,7 @@ app.post('/create/Friendships', (req, res, next) => {
     var result = req.body
     pool.query("INSERT INTO Friendships (UserID1, UserID2, FriendDate) VALUES (?, ?, ?);", [result.UserID1, result.UserID2, result.FriendDate], function (err) {
         if (err) {
-            res.status(500).send("Error inserting data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send()
@@ -220,9 +220,9 @@ app.post('/create/Friendships', (req, res, next) => {
 
 app.post('/retrieve/Friendships', (req, res, next) => {
     var result = req.body
-    pool.query("SELECT * FROM Friendships WHERE (UserID1 = ? OR UserID2 = ? OR ?=\'\');", [result.UserID, result.UserID, result.UserID], function (err, rows, fields) {
+    pool.query("with users1 as (select Users.UserID as id1, Users.UserName as User1 from Users), users2 as (select Users.UserID as id2, Users.UserName as User2 from Users) SELECT users1.User1, users2.User2, Friendships.FriendDate as fdate from users1 join Friendships on users1.id1 = Friendships.UserID1 join users2 on users2.id2 = Friendships.UserID2 WHERE (Friendships.UserID1 = ? OR Friendships.UserID2 = ?);", [result.UserID, result.UserID], function (err, rows, fields) {
         if (err) {
-            res.status(500).send("error retrieving data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send(JSON.stringify(rows))
@@ -234,7 +234,7 @@ app.post('/create/GameOwnerships', (req, res, next) => {
     var result = req.body
     pool.query("INSERT INTO GameOwnerships (UserID, GameID, PurchaseDate) VALUES (?, ?, ?);", [result.UserID, result.GameID, result.PurchaseDate], function (err) {
         if (err) {
-            res.status(500).send("Error inserting data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send()
@@ -244,9 +244,9 @@ app.post('/create/GameOwnerships', (req, res, next) => {
 
 app.post('/retrieve/GameOwnerships', (req, res, next) => {
     var result = req.body
-    pool.query("SELECT * FROM GameOwnerships WHERE ((UserID = ? OR ?=\'\') AND (GameID = ? OR ?=\'\'));", [result.UserID, result.UserID, result.GameID, result.GameID], function (err, rows, fields) {
+    pool.query("SELECT Users.UserName as uname, GameOwnerships.PurchaseDate as pdate, Games.GameName as gname from Users NATURAL JOIN GameOwnerships NATURAL JOIN Games WHERE ((Users.UserID = ? OR ?=\'NULL\') AND (Games.GameID = ? OR ?=\'NULL\'));", [result.UserID, result.UserID, result.GameID, result.GameID], function (err, rows, fields) {
         if (err) {
-            res.status(500).send("error retrieving data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send(JSON.stringify(rows))
@@ -258,7 +258,7 @@ app.post('/create/Games', (req, res, next) => {
     var result = req.body
     pool.query("INSERT INTO Games (GameName, DeveloperID, ReleaseDate) VALUES (?, ?, ?);", [result.GameName, result.DeveloperID, result.ReleaseDate], function (err) {
         if (err) {
-            res.status(500).send("Error inserting data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send()
@@ -268,9 +268,9 @@ app.post('/create/Games', (req, res, next) => {
 
 app.post('/retrieve/Games', (req, res, next) => {
     var result = req.body
-    pool.query("SELECT * FROM Games WHERE ((GameID = ? OR ?=\'\') AND (DeveloperID = ? OR ?=\'\') AND (ReleaseDate = ? OR ?=\'\'));", [result.GameID, result.GameID, result.DeveloperID, result.DeveloperID, result.ReleaseDate, result.ReleaseDate], function (err, rows, fields) {
+    pool.query("SELECT GameName, DeveloperName, ReleaseDate FROM Games natural join Developers WHERE (DeveloperID = ? OR ?=\'NULL\');", [result.DeveloperID, result.DeveloperID], function (err, rows, fields) {
         if (err) {
-            res.status(500).send("error retrieving data")
+            res.status(500).send(err.message)
         }
         else {
             res.status(200).send(JSON.stringify(rows))

@@ -1,10 +1,11 @@
-document.getElementById("create-user").addEventListener("click", function () {
+let button = document.getElementById("create-user")
+if (button) button.addEventListener("click", function(){
     var newName = document.getElementById("create-username").value;
     var birthDate = document.getElementById("create-birthdate").value;
     var profileMessage = document.getElementById("create-profile-message").value;
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -19,14 +20,16 @@ document.getElementById("create-user").addEventListener("click", function () {
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("retrieve-user").addEventListener("click", function(){
+
+button = document.getElementById("retrieve-user")
+if (button) button.addEventListener("click", function(){
     var username = document.getElementById("retrieve-username").value;
     var birthDate = document.getElementById("retrieve-birthdate").value;
 
     var xmlHttp = new XMLHttpRequest()
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -62,13 +65,14 @@ document.getElementById("retrieve-user").addEventListener("click", function(){
     xmlHttp.send(JSON.stringify(content));
 })
 
-document.getElementById("create-post").addEventListener("click", function () {
+button = document.getElementById("create-post")
+if (button) button.addEventListener("click", function(){
     userID = document.getElementById("create-userid").value;
     timestamp = document.getElementById("create-timestamp").value;
     postContent = document.getElementById("create-content").value;
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -83,14 +87,13 @@ document.getElementById("create-post").addEventListener("click", function () {
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("retrieve-post").addEventListener("click", function () {
-    var postID = document.getElementById("retrieve-postid").value;
+button = document.getElementById("retrieve-post")
+if (button) button.addEventListener("click", function(){
     var userID = document.getElementById("retrieve-userid").value;
-
     var xmlHttp = new XMLHttpRequest()
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -105,38 +108,37 @@ document.getElementById("retrieve-post").addEventListener("click", function () {
 
             for (let i = 0; i < result.length; i++) {
                 var newRow = table.insertRow(2);
-                (newRow.insertCell(0)).innerHTML = result[i].PostID;
-                (newRow.insertCell(1)).innerHTML = result[i].UserID;
-                (newRow.insertCell(2)).innerHTML = result[i].TimeStamp;
-                (newRow.insertCell(3)).innerHTML = result[i].Content;
+                (newRow.insertCell(0)).innerHTML = result[i].UserName;
+                (newRow.insertCell(1)).innerHTML = result[i].PostTime;
+                (newRow.insertCell(2)).innerHTML = result[i].Content;
             }
         }
     })
     content = {
-        PostID: postID,
         UserID: userID
     };
     var requestURL = '/retrieve/Posts';
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("create-comment").addEventListener("click", function () {
+button = document.getElementById("create-comment")
+if (button) button.addEventListener("click", function(){
     var userID = document.getElementById("create-userID").value;
     var postID = document.getElementById("create-postID").value;
     var timestamp = document.getElementById("create-timestamp").value;
     var commentContent = document.getElementById("create-content").value;
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
         }
     })
     content = {
-        UserId: userID,
+        UserID: userID,
         PostID: postID,
         TimeStamp: timestamp,
         Content: commentContent
@@ -145,15 +147,15 @@ document.getElementById("create-comment").addEventListener("click", function () 
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("retrieve-comment").addEventListener("click", function () {
-    var commentID = document.getElementById("retrieve-commentID").value;
+button = document.getElementById("retrieve-comment")
+if (button) button.addEventListener("click", function(){
     var userID = document.getElementById("retrieve-userID").value;
     var postID = document.getElementById("retrieve-postID").value;
 
     var xmlHttp = new XMLHttpRequest()
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -168,16 +170,15 @@ document.getElementById("retrieve-comment").addEventListener("click", function (
 
             for (let i = 0; i < result.length; i++) {
                 var newRow = table.insertRow(2);
-                (newRow.insertCell(0)).innerHTML = result[i].CommentID;
-                (newRow.insertCell(1)).innerHTML = result[i].PostID;
-                (newRow.insertCell(2)).innerHTML = result[i].UserID;
-                (newRow.insertCell(3)).innerHTML = result[i].TimeStamp;
-                (newRow.insertCell(4)).innerHTML = result[i].Content;
+                (newRow.insertCell(0)).innerHTML = result[i].Content;
+                (newRow.insertCell(1)).innerHTML = result[i].UserName;
+                (newRow.insertCell(2)).innerHTML = result[i].TimeStamp;
+                (newRow.insertCell(3)).innerHTML = result[i].OriginalPoster;
+                (newRow.insertCell(4)).innerHTML = result[i].OriginalPostContent;
             }
         }
     });
     content = {
-        CommentID: commentID,
         PostID: postID,
         UserID: userID
     };
@@ -185,13 +186,14 @@ document.getElementById("retrieve-comment").addEventListener("click", function (
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("create-developer").addEventListener("click", function () {
+button = document.getElementById("create-developer")
+if (button) button.addEventListener("click", function(){
     name = document.getElementById("create-developer-name").value;
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -204,13 +206,13 @@ document.getElementById("create-developer").addEventListener("click", function (
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("retrieve-developer").addEventListener("click", function () {
-    var developerID = document.getElementById("retrieve-developerID").value;
+button = document.getElementById("retrieve-developer")
+if (button) button.addEventListener("click", function(){
 
     var xmlHttp = new XMLHttpRequest()
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -230,43 +232,42 @@ document.getElementById("retrieve-developer").addEventListener("click", function
             }
         }
     });
-    content = {
-        DeveloperID:developerID
-    };
     var requestURL = '/retrieve/Developers';
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
-    xmlHttp.send(JSON.stringify(content));
-});
+    xmlHttp.send();
+})
 
-document.getElementById("create-friendship").addEventListener("click", function () {
+button = document.getElementById("create-friendship")
+if (button) button.addEventListener("click", function(){
     var userID1 = document.getElementById("create-userID-1").value;
     var userID2 = document.getElementById("create-userID-2").value;
     var friendDate = document.getElementById("create-friend-date").value;
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
         }
     })
     content = {
-        UserId1: userID1,
-        UserId2: userID2,
+        UserID1: userID1,
+        UserID2: userID2,
         FriendDate: friendDate
     };
     var requestURL = '/create/Friendships';
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("retrieve-friendship").addEventListener("click", function () {
-    var userID = document.getElementById("retrieve-userid").value;
+button = document.getElementById("retrieve-friendship")
+if (button) button.addEventListener("click", function(){
+    var userID = document.getElementById("retrieve-userID").value;
 
     var xmlHttp = new XMLHttpRequest()
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -281,9 +282,9 @@ document.getElementById("retrieve-friendship").addEventListener("click", functio
 
             for (let i = 0; i < result.length; i++) {
                 var newRow = table.insertRow(2);
-                (newRow.insertCell(0)).innerHTML = result[i].UserID1;
-                (newRow.insertCell(1)).innerHTML = result[i].UserID2;
-                (newRow.insertCell(2)).innerHTML = result[i].FriendDate;
+                (newRow.insertCell(0)).innerHTML = result[i].User1;
+                (newRow.insertCell(1)).innerHTML = result[i].User2;
+                (newRow.insertCell(2)).innerHTML = result[i].fdate;
             }
         }
     })
@@ -294,37 +295,39 @@ document.getElementById("retrieve-friendship").addEventListener("click", functio
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("create-game-ownership").addEventListener("click", function () {
+button = document.getElementById("create-game-ownership")
+if (button) button.addEventListener("click", function(){
     var userID = document.getElementById("create-userID").value;
     var gameID = document.getElementById("create-gameID").value;
     var purchaseDate = document.getElementById("create-purchase-date").value;
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
         }
     })
     content = {
-        UserId: userID,
-        GameId: gameID,
+        UserID: userID,
+        GameID: gameID,
         PurchaseDate: purchaseDate
     };
     var requestURL = '/create/GameOwnerships';
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("retrieve-game-ownership").addEventListener("click", function () {
-    var userID = document.getElementById("retrieve-userid").value;
-    var gameID = document.getElementById("retrieve-gameid").value;
+button = document.getElementById("retrieve-game-ownership")
+if (button) button.addEventListener("click", function(){
+    var userID = document.getElementById("retrieve-userID").value;
+    var gameID = document.getElementById("retrieve-gameID").value;
 
     var xmlHttp = new XMLHttpRequest()
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -339,9 +342,9 @@ document.getElementById("retrieve-game-ownership").addEventListener("click", fun
 
             for (let i = 0; i < result.length; i++) {
                 var newRow = table.insertRow(2);
-                (newRow.insertCell(0)).innerHTML = result[i].UserID;
-                (newRow.insertCell(1)).innerHTML = result[i].GameID;
-                (newRow.insertCell(2)).innerHTML = result[i].PurchaseDate;
+                (newRow.insertCell(0)).innerHTML = result[i].uname;
+                (newRow.insertCell(1)).innerHTML = result[i].gname;
+                (newRow.insertCell(2)).innerHTML = result[i].pdate;
             }
         }
     })
@@ -353,15 +356,16 @@ document.getElementById("retrieve-game-ownership").addEventListener("click", fun
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("create-game").addEventListener("click", function () {
+button = document.getElementById("create-game")
+if (button) button.addEventListener("click", function(){
     var gameName= document.getElementById("create-game-name").value;
     var developerID = document.getElementById("create-developer-id").value;
     var releaseDate = document.getElementById("create-release-date").value;
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -372,19 +376,18 @@ document.getElementById("create-game").addEventListener("click", function () {
         DeveloperID: developerID,
         ReleaseDate: releaseDate
     };
-    var requestURL = '/create/Game';
+    var requestURL = '/create/Games';
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})
 
-document.getElementById("retrieve-games").addEventListener("click", function () {
-    var gameID = document.getElementById("retrieve-game-id").value;
+button = document.getElementById("retrieve-games")
+if (button) button.addEventListener("click", function(){
     var developerID = document.getElementById("retrieve-developer-id").value;
-    var releaseDate = document.getElementById("retrieve-release-date").value;
 
     var xmlHttp = new XMLHttpRequest()
-    xmlHttp.addEventListener('load', function (event) {
+    xmlHttp.addEventListener('load', function(event){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
@@ -399,20 +402,17 @@ document.getElementById("retrieve-games").addEventListener("click", function () 
 
             for (let i = 0; i < result.length; i++) {
                 var newRow = table.insertRow(2);
-                (newRow.insertCell(0)).innerHTML = result[i].GameID;
-                (newRow.insertCell(1)).innerHTML = result[i].GameName;
-                (newRow.insertCell(2)).innerHTML = result[i].DeveloperID;
-                (newRow.insertCell(3)).innerHTML = result[i].ReleaseDate;
+                (newRow.insertCell(0)).innerHTML = result[i].GameName;
+                (newRow.insertCell(1)).innerHTML = result[i].DeveloperName;
+                (newRow.insertCell(2)).innerHTML = result[i].ReleaseDate;
             }
         }
     });
     content = {
-        GameID: gameID,
-        DeveloperID: developerID,
-        ReleaseDate: releaseDate
+        DeveloperID: developerID
     };
     var requestURL = '/retrieve/Games';
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
-});
+})

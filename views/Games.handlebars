@@ -12,34 +12,23 @@
         {{/each}}
         </select>    
 
-            <li><label for = "create-release-date">Release Date: </label>
-        <input type="date" id ="create-release-date"></li>
+            <li><label for="create-release-date">Release Date: </label>
+        <input type="date" id="create-release-date"></li>
 
-        <li><button>Create Game</button></li>
+        <li><button id="create-game">Create Game</button></li>
         </ul>
     </article>
 
     <article>
-        <p>Retrieve Game</p>
+        <p>Retrieve Game By Developer</p>
         <ul>
-            <li><label for = "retrieve-gameID">Game Name: </label>
-        <select id="retrieve-game-id">
-            <option value="NULL"></option>
-        {{#each games}}
-            <option value={{id}}>{{id}} - {{name}}</option>
-        {{/each}}
-        </select>
-
         <li><label for ="retrieve-developer-id">Developer ID: </label>
         <select id="retrieve-developer-id">
             <option value="NULL"></option>
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
-        </select>
-
-            <li><label for ="retrieve-release-date">Release Date: </label>
-        <input type="date" id="retrieve-release-date"></li>
+        </select></li>
 
         <li><button id="retrieve-games">Retrieve Games</button></li>
         </ul>
@@ -47,13 +36,11 @@
         <table class="output" id="output-games">
             <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
             <tr>
-                <th>Game ID</th>
                 <th>Game Name</th>
-                <th>Developer ID</th>
+                <th>Developer Name</th>
                 <th>Release Date</th>
             </tr>
             <tr>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>

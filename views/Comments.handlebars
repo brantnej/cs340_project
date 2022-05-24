@@ -4,7 +4,7 @@
         <ul>
             <li>
                 <label for="create-userID">User ID:</label>
-                <select name="create-userID">
+                <select id="create-userID">
                     {{#each users}}
                     <option value={{id}}>{{id}} - {{name}}</option>
                     {{/each}}
@@ -20,7 +20,7 @@
             </li>
             <li>
                 <label for="create-timestamp">TimeStamp:</label>
-                <input type="datetime-local" name="create-timestamp">
+                <input type="datetime-local" id="create-timestamp">
             </li>
             <li>
                 <label for="create-content">Content:</label>
@@ -33,17 +33,8 @@
     </article>
 
     <article>
-        <p>Retrieve Comment</p>
+        <p>Retrieve Comment by User or Post</p>
         <ul>
-            <li>
-                <label for="retrieve-commentID">Comment ID:</label>
-                <select id="retrieve-commentID">
-                    <option value="NULL"></option>
-                    {{#each comments}}
-                    <option value={{id}}>{{id}} - {{content}}</option>
-                    {{/each}}
-                </select>
-            </li>
             <li>
                 <label for="retrieve-userID">User ID:</label>
                 <select id="retrieve-userID">
@@ -69,11 +60,11 @@
         <table class="output" id="output-comments">
             <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
             <tr>
-                <th>Comment ID</th>
-                <th>User ID</th>
-                <th>Post ID</th>
-                <th>Timestamp</th>
                 <th>Content</th>
+                <th>UserName</th>
+                <th>TimeStamp</th>
+                <th>OriginalPoster</th>
+                <th>OriginalPostContent</th>
             </tr>
             <tr>
                 <th></th>

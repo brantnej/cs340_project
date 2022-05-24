@@ -10,7 +10,7 @@
         </select>
 
             <li><label for ="create-timestamp">Timestamp: </label>
-        <input type="time" id="create-timestamp"></li>
+        <input type="datetime-local" id="create-timestamp"></li>
 
             <li><label for ="create-content">Content: </label>
         <textarea id="create-content"></textarea></li>
@@ -20,23 +20,15 @@
     </article>
 
     <article>
-        <p>Retrieve Post</p>
+        <p>Retrieve Posts by User</p>
         <ul>
-            <li><label for ="retrieve-postid">Post ID: </label>
-        <select id="retrieve-postid">
-            <option value="NULL"></option>
-        {{#each posts}}
-            <option value={{id}}>{{id}} - {{content}}</option>
-        {{/each}}
-        </select>
-
             <li><label for ="retrieve-userid">User ID: </label>
         <select id="retrieve-userid">
             <option value="NULL"></option>
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
-        </select>
+        </select></li>
 
         <li><button id="retrieve-post">Retrieve Posts</button></li>
         </ul>
@@ -44,13 +36,11 @@
         <table class="output" id="output-post">
             <caption>Output - Leave fields blank to select rows without regard to the value of that column</caption>
             <tr>
-                <th>Post ID</th>
-                <th>User ID</th>
+                <th>UserName</th>
                 <th>Timestamp</th>
                 <th>Content</th>
             </tr>
             <tr>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
