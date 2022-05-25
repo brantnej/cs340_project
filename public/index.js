@@ -498,3 +498,59 @@ if (button) button.addEventListener("click", function(){
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));
 })
+
+button = document.getElementById("update-games")
+if (button) button.addEventListener("click", function(){
+    var gamename = document.getElementById("update-new-game-name").value;
+    var developerid = document.getElementById("update-new-developer-id").value;
+    var releasedate = document.getElementById("update-new-release-date").value;
+    var id = document.getElementById("update-old-gameid").value
+    
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.addEventListener('load', function(event){
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert(message);
+        }
+        else{
+            alert("update success!")
+            location.reload()
+        }
+    });
+    content = {
+        GameName: gamename,
+        DeveloperID: developerid,
+        ReleaseDate: releasedate,
+        GameID: id
+    };
+    var requestURL = '/update/Games';
+    xmlHttp.open("POST", requestURL, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(JSON.stringify(content));
+})
+
+button = document.getElementById("update-developers")
+if (button) button.addEventListener("click", function(){
+    var developername = document.getElementById("update-new-developer-name").value;
+    var id = document.getElementById("update-old-developer-id").value
+    
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.addEventListener('load', function(event){
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert(message);
+        }
+        else{
+            alert("update success!")
+            location.reload()
+        }
+    });
+    content = {
+        DeveloperName: developername,
+        DeveloperID: id
+    };
+    var requestURL = '/update/Developers';
+    xmlHttp.open("POST", requestURL, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(JSON.stringify(content));
+})

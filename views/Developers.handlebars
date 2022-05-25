@@ -48,18 +48,18 @@
     <p>Update Developer</p>
         <ul>
             <li>
-                <label for="update-old-developer-name">Old Developer Name:</label>
-                <select id="update-old-developer-name">
+                <label for="update-old-developer-id">Old Developer Name:</label>
+                <select id="update-old-developer-id">
                     <option value="NULL"></option>
         {{#each developers}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
                 <label for="update-new-developer-name">New Developer Name:</label>
-                <input type = "text" id ="update-new-developer-name">
+                <input type="text" id="update-new-developer-name">
             </li>
             <li>
-                <button>Update Developer</button>
+                <button id="update-developers">Update Developer</button>
             </li>
         </ul>
     </article>

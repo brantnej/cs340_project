@@ -46,15 +46,15 @@
     <article>
         <p>Update Game</p>
         <ul>
-            <li><label for "update-old-game-name">Old Game Name: </label>
-         <select id="update-old-game-name">
+            <li><label for "update-old-gameid">Old Game Name: </label>
+         <select id="update-old-gameid">
         {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
 
          <li><label for "update-new-game-name">New Game Name: </label>
-        <input type="text" name="update-new-game-name"></li>
+        <input type="text" id="update-new-game-name"></li>
 
         <li><label for "update-new-developer-id">New Developer ID: </label>
         <select id="update-new-developer-id">
@@ -66,7 +66,7 @@
             <li><label for "update-new-release-date">New Release Date: </label>
         <input type="date" id ="update-new-release-date"></li>
 
-        <li><button>Update Games</button></li>
+        <li><button id="update-games">Update Games</button></li>
         </ul>
     </article>
 

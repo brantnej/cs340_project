@@ -301,3 +301,27 @@ app.post('/update/Users', (req, res, next)=>{
     }
   })
 })
+
+app.post('/update/Games', (req, res, next)=>{
+  var result = req.body
+  pool.query("UPDATE Games SET GameName=?, DeveloperID=?, ReleaseDate=? WHERE GameID = ?;", [result.GameName, result.DeveloperID, result.ReleaseDate, result.GameID], function(err, rows,field){
+    if (err){
+      res.status(500).send(err.message)
+    }
+    else{
+      res.status(200).send()
+    }
+  })
+})
+
+app.post('/update/Developers', (req, res, next)=>{
+  var result = req.body
+  pool.query("UPDATE Developers SET DeveloperName=? WHERE DeveloperID = ?;", [result.DeveloperName, result.DeveloperID], function(err, rows,field){
+    if (err){
+      res.status(500).send(err.message)
+    }
+    else{
+      res.status(200).send()
+    }
+  })
+})

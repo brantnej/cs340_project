@@ -12,7 +12,7 @@
     <body>
         {{> header}}
         <article class="description">
-            Some boxes include a blank option. Selecting this option will make it match anything for that column, instead of a specific value. This means that leaving all rows blank in a delete statement will delete the entire relation, so be careful.
+            Some boxes include a blank option. Selecting this option will make it match anything for that column, instead of a specific value. This means that leaving all rows blank in a delete statement will delete the entire relation, so be careful. The database is set to CASCADE deletions, so, for example, if you delete a Developer, then all Games that refer to that Developer will also be deleted.
         </article>
         {{{body}}}
     </body>
