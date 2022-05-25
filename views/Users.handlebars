@@ -35,34 +35,28 @@
                 <th>Birthdate</th>
                 <th>Profile Message</th>
             </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
         </table>
     </article>
 
     <article>
         <p>Update User</p>
         <ul>
-            <li><label for ="update-old-username">Old User Name: </label>
-        <select name="update-old-username">
+            <li><label for="update-old-username">Old User Name: </label>
+        <select id="update-old-userid">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
             <li><label for ="update-new-username">New User Name: </label>
-        <input type="text" name="update-new-username"></li>
+        <input type="text" id="update-new-username"></li>
 
             <li><label for ="update-new-birthdate">New Birthdate: </label>
-        <input type="date" name="update-new-birthdate"></li>
+        <input type="date" id="update-new-birthdate"></li>
 
             <li><label for ="update-new-profile-message">New Profile Message: </label>
-        <input type="text" name="update-new-profile-message"></li>
+        <input type="text" id="update-new-profile-message"></li>
 
-        <li><button>Update Users</button></li>
+        <li><button id="update-user">Update Users</button></li>
         </ul>
     </article>
 
@@ -70,12 +64,12 @@
         <p>Delete User</p>
         <ul>
             <li><label for ="delete-username">User Name: </label>
-        <select name="delete-username">
+        <select id="delete-username">
         {{#each users}}
             <option value={{id}}>{{id}} - {{name}}</option>
         {{/each}}
         </select>
-        <li><button>Delete User</button></li>
+        <li><button id="delete-user">Delete User</button></li>
         </ul>
     </article>
 </main>

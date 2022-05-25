@@ -277,3 +277,27 @@ app.post('/retrieve/Games', (req, res, next) => {
         }
     })
 })
+
+app.post('/delete/Users', (req, res, next) => {
+  var result = req.body
+  pool.query("DELETE FROM Users WHERE UserID = ?;", [result.UserID], function (err, rows, field){
+    if (err){
+      res.status(500).send(err.message)
+    }
+    else{
+      res.status(200).send()
+    }
+  })
+})
+
+app.post('/update/Users', (req, res, next)=>{
+  var result = req.body
+  pool.query("UPDATE Users SET UserName=?, BirthDate=?, ProfileMessage=? WHERE UserID = ?;", [result.name, result.birthdate, result.profilemessage, result.UserID], function(err, rows,field){
+    if (err){
+      res.status(500).send(err.message)
+    }
+    else{
+      res.status(200).send()
+    }
+  })
+})
