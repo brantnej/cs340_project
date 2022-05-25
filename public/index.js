@@ -10,6 +10,9 @@ if (button) button.addEventListener("click", function(){
             var message = event.target.response;
             alert(message);
         }
+        else{
+            alert("Entry success!")
+        }
     });
     content = {
         name: newName,
@@ -77,6 +80,9 @@ if (button) button.addEventListener("click", function(){
             var message = event.target.response;
             alert(message);
         }
+        else{
+            alert("Entry success!")
+        }
     })
     content = {
         UserId: userID,
@@ -135,6 +141,9 @@ if (button) button.addEventListener("click", function(){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
+        }
+        else{
+            alert("Entry success!")
         }
     })
     content = {
@@ -198,6 +207,9 @@ if (button) button.addEventListener("click", function(){
             var message = event.target.response;
             alert(message);
         }
+        else{
+            alert("Entry success!")
+        }
     })
     content = {
         DeveloperName: name
@@ -249,6 +261,9 @@ if (button) button.addEventListener("click", function(){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
+        }
+        else{
+            alert("Entry success!")
         }
     })
     content = {
@@ -308,6 +323,9 @@ if (button) button.addEventListener("click", function(){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
+        }
+        else{
+            alert("Entry success!")
         }
     })
     content = {
@@ -369,6 +387,9 @@ if (button) button.addEventListener("click", function(){
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert(message);
+        }
+        else{
+            alert("Entry success!")
         }
     })
     content = {
