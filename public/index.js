@@ -447,7 +447,7 @@ if (button) button.addEventListener("click", function(){
 
 button = document.getElementById("delete-user")
 if (button) button.addEventListener("click", function(){
-    var UserSelector = document.getElementById("delete-username");
+    var userid = document.getElementById("delete-username").value;
 
     var xmlHttp = new XMLHttpRequest()
     xmlHttp.addEventListener('load', function(event){
@@ -461,7 +461,7 @@ if (button) button.addEventListener("click", function(){
         }
     });
     content = {
-        UserID: UserSelector.value
+        UserID: userid
     };
     var requestURL = '/delete/Users';
     xmlHttp.open("POST", requestURL, true);
@@ -550,6 +550,162 @@ if (button) button.addEventListener("click", function(){
         DeveloperID: id
     };
     var requestURL = '/update/Developers';
+    xmlHttp.open("POST", requestURL, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(JSON.stringify(content));
+})
+
+button = document.getElementById("delete-post")
+if (button) button.addEventListener("click", function(){
+    var postid = document.getElementById("delete-postid").value;
+    var userid = document.getElementById("delete-userid").value;
+
+    var xmlHttp = new XMLHttpRequest()
+    xmlHttp.addEventListener('load', function(event){
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert(message);
+        }
+        else {
+            alert("Deletion success!")
+            location.reload()
+        }
+    });
+    content = {
+        PostID: postid,
+        UserID: userid
+    };
+    var requestURL = '/delete/Posts';
+    xmlHttp.open("POST", requestURL, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(JSON.stringify(content));
+})
+
+button = document.getElementById("delete-developers")
+if (button) button.addEventListener("click", function(){
+    var developerid = document.getElementById("delete-developer-name").value;
+
+    var xmlHttp = new XMLHttpRequest()
+    xmlHttp.addEventListener('load', function(event){
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert(message);
+        }
+        else {
+            alert("Deletion success!")
+            location.reload()
+        }
+    });
+    content = {
+        DeveloperID: developerid
+    };
+    var requestURL = '/delete/Developers';
+    xmlHttp.open("POST", requestURL, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(JSON.stringify(content));
+})
+
+button = document.getElementById("delete-friendship")
+if (button) button.addEventListener("click", function(){
+    var userid1 = document.getElementById("delete-userID-1").value;
+    var userid2 = document.getElementById("delete-userID-2").value;
+
+    var xmlHttp = new XMLHttpRequest()
+    xmlHttp.addEventListener('load', function(event){
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert(message);
+        }
+        else {
+            alert("Deletion success!")
+            location.reload()
+        }
+    });
+    content = {
+        UserID1: userid1,
+        UserID2: userid2
+    };
+    var requestURL = '/delete/Friendships';
+    xmlHttp.open("POST", requestURL, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(JSON.stringify(content));
+})
+
+button = document.getElementById("delete-games")
+if (button) button.addEventListener("click", function(){
+    var gameid = document.getElementById("delete-game-name").value;
+    var developerid = document.getElementById("delete-developer-id").value
+
+    var xmlHttp = new XMLHttpRequest()
+    xmlHttp.addEventListener('load', function(event){
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert(message);
+        }
+        else {
+            alert("Deletion success!")
+            location.reload()
+        }
+    });
+    content = {
+        GameID: gameid,
+        DeveloperID: developerid
+    };
+    var requestURL = '/delete/Games';
+    xmlHttp.open("POST", requestURL, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(JSON.stringify(content));
+})
+
+button = document.getElementById("delete-game-ownership")
+if (button) button.addEventListener("click", function(){
+    var userid = document.getElementById("delete-userID").value;
+    var gameid = document.getElementById("delete-gameID").value;
+
+    var xmlHttp = new XMLHttpRequest()
+    xmlHttp.addEventListener('load', function(event){
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert(message);
+        }
+        else {
+            alert("Deletion success!")
+            location.reload()
+        }
+    });
+    content = {
+        GameID: gameid,
+        UserID: userid
+    };
+    var requestURL = '/delete/GameOwnerships';
+    xmlHttp.open("POST", requestURL, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+    xmlHttp.send(JSON.stringify(content));
+})
+
+button = document.getElementById("delete-comment")
+if (button) button.addEventListener("click", function(){
+    var postid = document.getElementById("delete-postID").value;
+    var userid = document.getElementById("delete-userID").value;
+    var commentid = document.getElementById("delete-commentID").value;
+
+    var xmlHttp = new XMLHttpRequest()
+    xmlHttp.addEventListener('load', function(event){
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert(message);
+        }
+        else {
+            alert("Deletion success!")
+            location.reload()
+        }
+    });
+    content = {
+        PostID: postid,
+        UserID: userid,
+        CommentID: commentid
+    };
+    var requestURL = '/delete/Comments';
     xmlHttp.open("POST", requestURL, true);
     xmlHttp.setRequestHeader('Content-Type', 'application/json');
     xmlHttp.send(JSON.stringify(content));

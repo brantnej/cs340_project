@@ -74,7 +74,7 @@
         <p>Delete Game</p>
         <ul>
             <li><label for "delete-game-name">Game Name: </label>
-        <select id="update-old-game-name">
+        <select id="delete-game-name">
             <option value="NULL"></option>
         {{#each games}}
             <option value={{id}}>{{id}} - {{name}}</option>
@@ -89,7 +89,7 @@
         {{/each}}
         </select>
 
-        <li><button id="delete-game">Delete Game</button></li>
+        <li><button id="delete-games">Delete Game</button></li>
         </ul>
     </article>
 </main>
