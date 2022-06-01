@@ -31,7 +31,6 @@ app.set('view engine', 'handlebars')
 app.use(express.json())
 app.use(express.static('public'));
 app.use('text/css', express.static(__dirname + '/public/style.css'))
-app.use('application/javascript', express.static(__dirname + '/public/index.js'))
 
 var port = process.argv[3];
 
