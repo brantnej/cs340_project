@@ -62,7 +62,8 @@ document.getElementById("retrieve-user").addEventListener("click", function(){
                 var profMessage = newRow.insertCell(3);
                 id.innerHTML = result[i].UserID;
                 username.innerHTML = result[i].UserName;
-                birthDate.innerHTML = result[i].BirthDate;
+                //parse date
+                birthDate.innerHTML = new Date(Date.parse(result[i].BirthDate)).toLocaleString().split(',')[0];
                 profMessage.innerHTML = result[i].ProfileMessage;
             }
         }
